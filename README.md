@@ -6,7 +6,26 @@ quiera contar historias en movimiento sin instalar nada.
 
 > Herramienta de la **Escuela para Animadores Rosario**.
 
-## Stack
+## Dos formas de usarlo
+
+### 1. HTML único (recomendado para distribuir)
+
+Un solo archivo `download/epanimeitor.html` (~500 KB) con todo embebido:
+logos en base64, librería gifenc inlineada, CSS y JavaScript vanilla.
+Funciona abriéndolo con doble-clic desde cualquier navegador, sin servidor.
+
+- Lo podés mandar por mail, WhatsApp, pen drive
+- Funciona offline (descargalo y abrilo)
+- Se hostea en cualquier lado (GitHub Pages, Netlify, S3) como un archivo suelto
+- Cero dependencias para el usuario final
+
+### 2. App Next.js (recomendado para extender)
+
+El código fuente en `src/` es una app Next.js 16 con TypeScript, Tailwind y
+shadcn/ui. Útil si querés añadir features como backend, login, base de datos,
+compartir animaciones online, etc.
+
+## Stack (versión Next.js)
 
 - [Next.js 16](https://nextjs.org/) + TypeScript
 - Tailwind CSS + shadcn/ui
