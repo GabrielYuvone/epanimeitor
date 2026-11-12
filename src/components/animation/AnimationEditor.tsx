@@ -28,6 +28,7 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
+import { EPANIMATOR_LOGO, LOGO_INTRO } from "@/lib/animation/logos";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
@@ -255,7 +256,7 @@ export default function AnimationEditor() {
 
   const saveProject = () => {
     const project: AnimationProject = {
-      name: "mi-animacion",
+      name: "epanimeitor",
       width: CANVAS_W,
       height: CANVAS_H,
       bgColor,
@@ -263,7 +264,7 @@ export default function AnimationEditor() {
       onionSkin,
       frames,
     };
-    downloadText(JSON.stringify(project, null, 2), "animacion.json");
+    downloadText(JSON.stringify(project, null, 2), "epanimeitor.json");
   };
 
   const loadProject = () => {
@@ -297,7 +298,7 @@ export default function AnimationEditor() {
     setExporting(true);
     try {
       const blob = await exportGif(frames, bgColor, fps);
-      downloadBlob(blob, `animacion-${Date.now()}.gif`);
+      downloadBlob(blob, `epanimeitor-${Date.now()}.gif`);
     } catch (err) {
       alert("Error al exportar: " + (err as Error).message);
     } finally {
@@ -354,18 +355,13 @@ export default function AnimationEditor() {
         {/* ====== TOP BAR ====== */}
         <header className="sticky top-0 z-30 backdrop-blur-md bg-white/70 border-b border-black/5 shadow-sm">
           <div className="max-w-[1400px] mx-auto px-4 py-3 flex items-center gap-3 flex-wrap">
-            <div className="flex items-center gap-2 mr-2">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-pink-500 via-orange-400 to-yellow-400 flex items-center justify-center shadow-md">
-                <Play size={18} className="text-white" fill="white" />
-              </div>
-              <div className="leading-tight">
-                <div className="font-extrabold text-lg text-slate-800 tracking-tight">
-                  FrameFiesta
-                </div>
-                <div className="text-[10px] text-slate-500 -mt-0.5">
-                  animador frame a frame
-                </div>
-              </div>
+            <div className="flex items-center gap-2 mr-2 shrink-0">
+              <img
+                src={EPANIMATOR_LOGO}
+                alt="Epanimeitor"
+                className="h-9 w-auto object-contain"
+                style={{ maxHeight: 36 }}
+              />
             </div>
 
             <div className="flex items-center gap-1.5 ml-auto">
@@ -386,7 +382,14 @@ export default function AnimationEditor() {
                 </DialogTrigger>
                 <DialogContent className="max-w-md">
                   <DialogHeader>
-                    <DialogTitle>Atajos y tips</DialogTitle>
+                    <DialogTitle className="flex items-center gap-2">
+                      <img
+                        src={EPANIMATOR_LOGO}
+                        alt="Epanimeitor"
+                        className="h-6 w-auto"
+                      />
+                      <span className="sr-only">Epanimeitor — Atajos y tips</span>
+                    </DialogTitle>
                   </DialogHeader>
                   <div className="text-sm text-slate-700 space-y-2">
                     <p><b>Espacio</b> – Reproducir / pausar</p>
@@ -400,6 +403,16 @@ export default function AnimationEditor() {
                       Tip: activa <b>onion skin</b> para ver el fotograma anterior en
                       transparente y animar con más precisión.
                     </p>
+                    <div className="flex items-center gap-2 pt-2 mt-2 border-t">
+                      <img
+                        src={LOGO_INTRO}
+                        alt="Escuela para Animadores Rosario"
+                        className="h-8 w-auto opacity-80"
+                      />
+                      <span className="text-[10px] text-slate-500">
+                        Escuela para Animadores · Rosario
+                      </span>
+                    </div>
                   </div>
                 </DialogContent>
               </Dialog>
@@ -522,8 +535,21 @@ export default function AnimationEditor() {
         />
 
         <footer className="border-t border-black/5 bg-white/60 backdrop-blur-sm py-3 mt-4">
-          <div className="max-w-[1400px] mx-auto px-4 text-center text-xs text-slate-500">
-            FrameFiesta · Hecho con cariño para animar rapidito · Atajos con <kbd className="px-1 bg-slate-100 rounded">?</kbd> en el botón Ayuda
+          <div className="max-w-[1400px] mx-auto px-4 flex items-center justify-center gap-3 flex-wrap">
+            <img
+              src={LOGO_INTRO}
+              alt="Escuela para Animadores Rosario"
+              className="h-10 w-auto object-contain opacity-90"
+              style={{ maxHeight: 40 }}
+            />
+            <div className="text-xs text-slate-500 text-center leading-tight">
+              <div>
+                <b className="text-slate-700">Epanimeitor</b> · animador frame a frame
+              </div>
+              <div className="mt-0.5">
+                Escuela para Animadores · Rosario · Hecho con cariño
+              </div>
+            </div>
           </div>
         </footer>
       </div>
